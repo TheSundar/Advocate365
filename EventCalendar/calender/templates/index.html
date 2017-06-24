@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Event Calendar</title>
+        <!--CSS Files-->
+            <!-- Bootstrap CSS-->
+                <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+            <!--For Bootstrap Calendar-->
+                <link href="{% static 'css/bootstrap_calendar/colorpicker.min.css' %}" rel="stylesheet" type="text/css">
+                <link href="{% static 'css/bootstrap_calendar/angular-bootstrap-calendar.min.css' %}" rel="stylesheet" type="text/css">
+            <!--For Bootstrap Date Picker CSS-->
+                <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}" />
+                <link rel="stylesheet" href="{% static 'css/datepicker3.min.css' %}" />
+            <!--Font Awesome Icons-->
+                <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+            <!--For Datatables-->
+                <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.css' %}">
+                <link rel="stylesheet" href="{% static 'css/dataTables.fixedHeader.css' %}">
+            <!-- Custom Styles CSS-->
+            <link href="{% static 'css/custom_css.css' %}" rel="stylesheet" type="text/css">
+
+        <!--JS Files-->
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                    <!--<script type="text/javascript" src="{% static 'js/libraries/jquery.min.js' %}"></script>-->
+                    <script type="text/javascript" src="{% static 'js/libraries/jquery-1.10.2.min.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/jquery.dataTables.js' %}"></script>
+            <!--Main anugular files -->
+                <!--Angular-->
+                    <script type="text/javascript" src="{% static 'js/libraries/angular.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/angular.min.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/angular-route.min.js' %}"></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                    <script type="text/javascript" src="{% static 'js/libraries/html5shiv.min.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/respond.min.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/bootstrap.min.js' %}"></script>
+                <!--For Angular Calendar-->
+                    <script type="text/javascript" src="{% static 'js/libraries/moment.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/interactjs.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/angular-animate.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/ui-bootstrap-tpls.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/rrule.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-colorpicker.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-calendar.js' %}"></script>
+                <!--For Bootstrap Date picker JS-->
+                    <script type="text/javascript" src="{% static 'js/libraries/bootstrap-datepicker.min.js' %}"></script>
+                <!--For Data tables JS-->
+                    <script type="text/javascript" src="{% static 'js/libraries/dataTables.bootstrap.js' %}"></script>
+                    <script type="text/javascript" src="{% static 'js/libraries/dataTables.fixedHeader.min.js' %}"></script>
+            <!--Custom JS Files-->
+                <script src="{% static 'js/angularjs/main.js' %}" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div data-ng-app="mainApp" >
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">Event Calendar</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-collapse-3">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#/home">Home</a>
+                            </li>
+                            <li>
+                                <a href="#/my_events">My Events</a>
+                            </li>
+                            <li>
+                                <a href="#/my_calendar">My Calendar</a>
+                            </li>
+                            <li>
+                                <a href="#/new_event">Add Event</a>
+                            </li>
+                            <!--<li>-->
+                                <!--<a href="#/news">News</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a href="#/contacts">Contact</a>-->
+                            <!--</li>-->
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container -->
+            </nav><!-- /.navbar -->
+
+            <ng-view></ng-view>
+
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<html lang="en" data-ng-app="myCalendarApp">-->
+    <!--<head>-->
+        <!--<meta charset="UTF-8">-->
+        <!--<title>My Calendar</title>-->
+        <!--&lt;!&ndash;For Bootstrap Calendar&ndash;&gt;-->
+        <!--&lt;!&ndash;<link href="{% static 'css/colorpicker.min.css' %}" rel="stylesheet" type="text/css">&ndash;&gt;-->
+        <!--&lt;!&ndash;<link href="{% static 'css/angular-bootstrap-calendar.min.css' %}" rel="stylesheet" type="text/css">&ndash;&gt;-->
+        <!--&lt;!&ndash;For Bootstrap 2.3.2&ndash;&gt;-->
+        <!--<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">-->
+        <!--<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">-->
+        <!--&lt;!&ndash;For Bootstrap 4&ndash;&gt;-->
+        <!--&lt;!&ndash;<link rel="stylesheet" href="{% static 'css/bootstrap_4/bootstrap.min.css' %}" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">&ndash;&gt;-->
+        <!--&lt;!&ndash;For Custom Styles&ndash;&gt;-->
+        <!--<link href="{% static 'css/custom_css.css' %}" rel="stylesheet" type="text/css">-->
+    <!--</head>-->
+
+    <!--<body>-->
+        <!--&lt;!&ndash;<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash; Navbar content &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span class="navbar-toggler-icon"></span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="navbar-brand" href="#">Event Calendar</a>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<div class="collapse navbar-collapse" id="navbarSupportedContent">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul class="navbar-nav mr-auto">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="nav-item active">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a class="nav-link" href="#">Home&ndash;&gt;-->
+                            <!--&lt;!&ndash;<span class="sr-only">(current)</span></a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="nav-item">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a class="nav-link" href="#">Link</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="nav-item">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a class="nav-link" href="#">Disabled</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</nav>&ndash;&gt;-->
+
+        <!--<div class="container-fluid">-->
+    <!--&lt;!&ndash; Second navbar for categories &ndash;&gt;-->
+    <!--<nav class="navbar navbar-default">-->
+      <!--<div class="container">-->
+        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+        <!--<div class="navbar-header">-->
+          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+          <!--</button>-->
+          <!--<a class="navbar-brand" href="#">Brand</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+        <!--<div class="collapse navbar-collapse" id="navbar-collapse-1">-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a href="#">Home</a></li>-->
+            <!--<li><a href="#">About</a></li>-->
+            <!--<li><a href="#">Services</a></li>-->
+            <!--<li><a href="#">Works</a></li>-->
+            <!--<li><a href="#">News</a></li>-->
+            <!--<li><a href="#">Contact</a></li>-->
+            <!--<li>-->
+              <!--<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">Categories</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+          <!--<ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">-->
+            <!--<li><a href="#">Web design</a></li>-->
+            <!--<li><a href="#">Development</a></li>-->
+            <!--<li><a href="#">Graphic design</a></li>-->
+            <!--<li><a href="#">Print</a></li>-->
+            <!--<li><a href="#">Motion</a></li>-->
+            <!--<li><a href="#">Mobile apps</a></li>-->
+          <!--</ul>-->
+        <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</nav>&lt;!&ndash; /.navbar &ndash;&gt;-->
+
+    <!--&lt;!&ndash; Second navbar for sign in &ndash;&gt;-->
+    <!--<nav class="navbar navbar-default">-->
+      <!--<div class="container">-->
+        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+        <!--<div class="navbar-header">-->
+          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+          <!--</button>-->
+          <!--<a class="navbar-brand" href="#">Brand</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+        <!--<div class="collapse navbar-collapse" id="navbar-collapse-2">-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a href="#">Home</a></li>-->
+            <!--<li><a href="#">About</a></li>-->
+            <!--<li><a href="#">Services</a></li>-->
+            <!--<li><a href="#">Works</a></li>-->
+            <!--<li><a href="#">News</a></li>-->
+            <!--<li><a href="#">Contact</a></li>-->
+            <!--<li>-->
+              <!--<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+          <!--<div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">-->
+            <!--<form class="navbar-form navbar-right form-inline" role="form">-->
+              <!--<div class="form-group">-->
+                <!--<label class="sr-only" for="Email">Email</label>-->
+                <!--<input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="sr-only" for="Password">Password</label>-->
+                <!--<input type="password" class="form-control" id="Password" placeholder="Password" required />-->
+              <!--</div>-->
+              <!--<button type="submit" class="btn btn-success">Sign in</button>-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</nav>&lt;!&ndash; /.navbar &ndash;&gt;-->
+
+    <!--&lt;!&ndash; Second navbar for search &ndash;&gt;-->
+    <!--<nav class="navbar navbar-inverse">-->
+      <!--<div class="container">-->
+        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+        <!--<div class="navbar-header">-->
+          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-3">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+          <!--</button>-->
+          <!--<a class="navbar-brand" href="#">Brand</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+        <!--<div class="collapse navbar-collapse" id="navbar-collapse-3">-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a href="#">Home</a></li>-->
+            <!--<li><a href="#">About</a></li>-->
+            <!--<li><a href="#">Services</a></li>-->
+            <!--<li><a href="#">Works</a></li>-->
+            <!--<li><a href="#">News</a></li>-->
+            <!--<li><a href="#">Contact</a></li>-->
+            <!--<li>-->
+              <!--<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse3" aria-expanded="false" aria-controls="nav-collapse3">Search</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+          <!--<div class="collapse nav navbar-nav nav-collapse" id="nav-collapse3">-->
+            <!--<form class="navbar-form navbar-right" role="search">-->
+              <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" placeholder="Search" />-->
+              <!--</div>-->
+              <!--<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>-->
+            <!--</form>-->
+          <!--</div>-->
+        <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</nav>&lt;!&ndash; /.navbar &ndash;&gt;-->
+
+    <!--&lt;!&ndash; Second navbar for profile settings &ndash;&gt;-->
+    <!--<nav class="navbar navbar-inverse">-->
+      <!--<div class="container">-->
+        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+        <!--<div class="navbar-header">-->
+          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">-->
+            <!--<span class="sr-only">Toggle navigation</span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+            <!--<span class="icon-bar"></span>-->
+          <!--</button>-->
+          <!--<a class="navbar-brand" href="#">Brand</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+        <!--<div class="collapse navbar-collapse" id="navbar-collapse-4">-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li><a href="#">Home</a></li>-->
+            <!--<li><a href="#">About</a></li>-->
+            <!--<li><a href="#">Services</a></li>-->
+            <!--<li><a href="#">Works</a></li>-->
+            <!--<li><a href="#">News</a></li>-->
+            <!--<li><a href="#">Contact</a></li>-->
+            <!--<li>-->
+              <!--<a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="#nav-collapse4" aria-expanded="false" aria-controls="nav-collapse4">Profile <i class=""></i> </a>-->
+            <!--</li>-->
+          <!--</ul>-->
+          <!--<ul class="collapse nav navbar-nav nav-collapse" role="search" id="nav-collapse4">-->
+            <!--<li><a href="#">Support</a></li>-->
+            <!--<li class="dropdown">-->
+              <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="https://pbs.twimg.com/profile_images/588909533428322304/Gxuyp46N.jpg" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>-->
+              <!--<ul class="dropdown-menu" role="menu">-->
+                <!--<li><a href="#">My profile</a></li>-->
+                <!--<li><a href="#">Favorited</a></li>-->
+                <!--<li><a href="#">Settings</a></li>-->
+                <!--<li class="divider"></li>-->
+                <!--<li><a href="#">Logout</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+      <!--</div>&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</nav>&lt;!&ndash; /.navbar &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+
+
+
+
+
+
+
+
+
+
+    <!--&lt;!&ndash;*************************************************************************************************************&ndash;&gt;-->
+        <!--&lt;!&ndash; JS &ndash;&gt;-->
+            <!--&lt;!&ndash;Jquery&ndash;&gt;-->
+                <!--<script src="{% static 'js/libraries/jquery.min.js' %}"></script>-->
+            <!--&lt;!&ndash;For Bootstrap 4 jquery&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/bootstrap_4/jquery-3.1.1.slim.min.js' %}" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>&ndash;&gt;-->
+            <!--&lt;!&ndash;Angular JS&ndash;&gt;-->
+                <!--<script src="{% static 'js/libraries/angular.js' %}"></script>-->
+            <!--&lt;!&ndash;&lt;!&ndash;For Angular Calendar&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/moment.js' %}"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/interactjs.js' %}"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/angular-animate.js' %}"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/rrule.js' %}"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/angular-bootstrap-colorpicker.js' %}"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/angular-bootstrap-calendar.js' %}"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/ui-bootstrap-tpls.js' %}"></script>&ndash;&gt;-->
+            <!--&lt;!&ndash;For Bootstrap 2.3.2&ndash;&gt;-->
+                <!--<script src="{% static 'js/libraries/bootstrap.min.js' %}"></script>-->
+            <!--&lt;!&ndash;For Bootstrap 4&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/bootstrap_4/tether.min.js' %}" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script src="{% static 'js/libraries/bootstrap_4/bootstrap.min.js' %}" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>&ndash;&gt;-->
+            <!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+            <!--&lt;!&ndash;Angular JS Custom Files&ndash;&gt;-->
+                <!--<script src="{% static 'js/angularjs/scripts.js' %}"></script>-->
+            <!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+    <!--</body>-->
+<!--</html>-->

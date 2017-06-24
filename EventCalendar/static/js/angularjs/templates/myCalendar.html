@@ -1,0 +1,194 @@
+<!--<div>-->
+    <!--<div class="col-sm-2 text-center">-->
+    <!--</div>-->
+    <!--<div class="col-sm-8 text-center">-->
+        <div>
+            <h2 class="text-center">{$ vm.calendarTitle $}</h2>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="btn-group  pull-left" >
+                        <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" decrement="vm.calendarView" data-ng-click="vm.cellIsOpen = false">
+                            Previous
+                        </button>
+                        <button class="btn btn-default" mwl-date-modifier date="vm.viewDate" set-to-today data-ng-click="vm.cellIsOpen = false">
+                            Today
+                        </button>
+                        <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" increment="vm.calendarView" data-ng-click="vm.cellIsOpen = false">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <br class="visible-xs visible-sm">
+
+                <div class="col-md-6 text-center">
+                    <div class="btn-group pull-right">
+                        <label class="btn btn-primary" data-ng-model="vm.calendarView" uib-btn-radio="'year'" data-ng-click="vm.cellIsOpen = false">Year</label>
+                        <label class="btn btn-primary" data-ng-model="vm.calendarView" uib-btn-radio="'month'" data-ng-click="vm.cellIsOpen = false">Month</label>
+                        <label class="btn btn-primary" data-ng-model="vm.calendarView" uib-btn-radio="'week'" data-ng-click="vm.cellIsOpen = false">Week</label>
+                        <label class="btn btn-primary" data-ng-model="vm.calendarView" uib-btn-radio="'day'" data-ng-click="vm.cellIsOpen = false">Day</label>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="addEventModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">New Event</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-horizontal">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Title</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" placeholder="Title" data-ng-model="title">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Starts At</label>
+                                                    <div class="col-sm-6">
+                                                        <p class="input-group" style="max-width: 250px">
+                                                            <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" data-ng-model="event.startsAt" is-open="event.startOpen" close-text="Close">
+                                                            <span class="input-group-btn">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-default"
+                                                                    data-ng-click="vm.toggle($event, 'startOpen', event)">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                        </p>
+                                                        <div uib-timepicker data-ng-model="event.startsAt" hour-step="1" minute-step="15" show-meridian="true">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Ends At</label>
+                                                    <div class="col-sm-6">
+                                                        <p class="input-group" style="max-width: 250px">
+                                                            <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" data-ng-model="event.endsAt" is-open="event.endOpen" close-text="Close">
+                                                            <span class="input-group-btn">
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-default"
+                                                                    data-ng-click="vm.toggle($event, 'endOpen', event)">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </button>
+                                                            </span>
+                                                        </p>
+                                                        <div uib-timepicker data-ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Description</label>
+                                                    <div class="col-sm-8">
+                                                        <textarea class="form-control custom-control" rows="3" data-ng-model="description"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" data-ng-click="vm.addEvent()">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <mwl-calendar
+                    events="vm.events"
+                    view="vm.calendarView"
+                    view-title="vm.calendarTitle"
+                    view-date="vm.viewDate"
+                    on-event-click="vm.eventClicked(calendarEvent)"
+                    on-event-times-changed="vm.eventTimesChanged(calendarEvent);
+                        calendarEvent.startsAt = calendarNewEventStart;
+                        calendarEvent.endsAt = calendarNewEventEnd"
+                    cell-is-open="vm.cellIsOpen"
+                    day-view-start="06:00"
+                    day-view-end="22:59"
+                    day-view-split="30"
+                    cell-modifier="vm.modifyCell(calendarCell)"
+                    cell-auto-open-disabled="true"
+                    on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+            </mwl-calendar>
+            <br>
+            <!--<button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#addEventModal">-->
+                <!--Add Event-->
+            <!--</button>-->
+            <br>
+            <br>
+            <table class="table table-bordered" data-ng-if="vm.dateEvents.length">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Primary color</th>
+                        <th>Secondary color</th>
+                        <th>Starts at</th>
+                        <th>Ends at</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="event in vm.dateEvents track by $index">
+                        <td>
+                            <input type="text" class="form-control" data-ng-model="event.title">
+                        </td>
+                        <td>
+                            <input class="form-control" colorpicker type="text" data-ng-model="event.color.primary">
+                        </td>
+                        <td>
+                            <input class="form-control" colorpicker type="text" data-ng-model="event.color.secondary">
+                        </td>
+                        <td>
+                            <p class="input-group" style="max-width: 250px">
+                                <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" data-ng-model="event.startsAt" is-open="event.startOpen" close-text="Close">
+                                <span class="input-group-btn">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-ng-click="vm.toggle($event, 'startOpen', event)">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                            <div uib-timepicker data-ng-model="event.startsAt" hour-step="1" minute-step="15" show-meridian="true">
+                            </div>
+                        </td>
+                        <td>
+                            <p class="input-group" style="max-width: 250px">
+                                <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" data-ng-model="event.endsAt" is-open="event.endOpen" close-text="Close">
+                                <span class="input-group-btn">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-ng-click="vm.toggle($event, 'endOpen', event)">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                            <div uib-timepicker data-ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true">
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" data-ng-click="vm.events.splice($index, 1)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <!--</div>-->
+    <!--<div class="col-sm-2 text-center">-->
+    <!--</div>-->
+<!--</div>-->

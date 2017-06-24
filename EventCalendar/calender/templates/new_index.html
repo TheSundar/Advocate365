@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-ng-app="eventApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Event Calendar</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" type="text/css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'mdb_libraries/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'mdb_libraries/css/mdb.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Template styles -->
+    <link href="{% static 'mdb_libraries/css/style.css' %}" rel="stylesheet" type="text/css">
+
+    <!--For Bootstrap Calendar-->
+        <link href="{% static 'css/bootstrap_calendar/colorpicker.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/bootstrap_calendar/angular-bootstrap-calendar.min.css' %}" rel="stylesheet" type="text/css">
+    <!--For Bootstrap Date Picker CSS-->
+        <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/datepicker3.min.css' %}" />
+    <!--Font Awesome Icons-->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!--For Datatables-->
+        <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/dataTables.fixedHeader.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-toggleable-md navbar-dark">
+            <div class="container">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <strong>Event Calendar</strong>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav1">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/my_events">My Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/my_calendar">My Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/new_event">Add Event</a>
+                        </li>
+                        <!--<li class="nav-item dropdown btn-group">-->
+                            <!--<a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+                            <!--<div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">-->
+                                <!--<a class="dropdown-item">Action</a>-->
+                                <!--<a class="dropdown-item">Another action</a>-->
+                                <!--<a class="dropdown-item">Something else here</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                    <form class="form-inline waves-effect waves-light">
+                        <input class="form-control" type="text" placeholder="Search">
+                    </form>
+                </div>
+            </div>
+        </nav>
+	    <!--/.Navbar-->
+    </header>
+
+    <main>
+        <!--Main layout-->
+        <div class="container">
+            <!--First row-->
+            <div class="row wow fadeIn" data-wow-delay="0.2s">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <ng-view></ng-view>
+                        <!--<h2 class="h2-responsive">Material Design for Bootstrap</h2>-->
+                        <!--<br>-->
+                        <!--<p>Powerful and free Material Design UI KIT</p>-->
+                        <!--<hr>-->
+                        <!--<p>Register for free and get access to amazing framework and beautiful components</p>-->
+                        <!--<a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-mdb btn-stc" rel="nofollow">Download <i class="fa fa-download right"></i></a>-->
+                        <!--<a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-unique btn-ptc" rel="nofollow">Learn more <i class="fa fa-book right"></i></a>-->
+                    </div>
+                </div>
+            </div>
+            <!--/.First row-->
+        </div>
+        <!--/.Main layout-->
+
+    </main>
+
+    <!--Footer-->
+    <footer class="page-footer">
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2017 Copyright: <a href="#"> Event Calendar </a>
+            </div>
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <!--/.Footer-->
+
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'mdb_libraries/js/jquery-2.2.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/libraries/jquery.dataTables.js' %}"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'mdb_libraries/js/tether.min.js' %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'mdb_libraries/js/bootstrap.min.js' %}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'mdb_libraries/js/mdb.min.js' %}"></script>
+
+    <!--Angular-->
+        <script type="text/javascript" src="{% static 'js/libraries/angular.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-route.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script type="text/javascript" src="{% static 'js/libraries/html5shiv.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/respond.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap.min.js' %}"></script>
+    <!--For Angular Calendar-->
+        <script type="text/javascript" src="{% static 'js/libraries/moment.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/interactjs.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-animate.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/ui-bootstrap-tpls.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/rrule.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-colorpicker.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-calendar.js' %}"></script>
+    <!--For Bootstrap Date picker JS-->
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap-datepicker.min.js' %}"></script>
+    <!--For Data tables JS-->
+        <script type="text/javascript" src="{% static 'js/libraries/dataTables.bootstrap.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/dataTables.fixedHeader.min.js' %}"></script>
+    <!-- Custom Angular JS -->
+        <script type="text/javascript" src="{% static 'js/angularjs/main.js' %}"></script>
+
+    <!--<script>-->
+    <!--new WOW().init();-->
+    <!--</script>-->
+
+</body>
+
+</html>
