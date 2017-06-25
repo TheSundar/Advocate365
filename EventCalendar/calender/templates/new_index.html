@@ -30,10 +30,10 @@
         <link rel="stylesheet" href="{% static 'css/datepicker3.min.css' %}" />
     <!--Font Awesome Icons-->
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-    <!--For Datatables-->
-        <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.css' %}">
-        <link rel="stylesheet" href="{% static 'css/dataTables.fixedHeader.css' %}">
-
+    <!--For Grid Datatables-->
+        <link rel="stylesheet" href="{% static 'css/ui-grid.css' %}">
+    <!--Angular Material-->
+        <link rel="stylesheet" href="{% static 'css/angular-material.min.css' %}">
 </head>
 
 <body>
@@ -45,9 +45,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <strong>Event Calendar</strong>
+                    <strong>Advocate365</strong>
                 </a>
-                <div class="collapse navbar-collapse" id="navbarNav1">
+                <div class="collapse navbar-collapse" id="navbarNav1" data-ng-controller="navCtrl  as ctrl">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
@@ -59,7 +59,8 @@
                             <a class="nav-link" href="#/my_calendar">My Calendar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#/new_event">Add Event</a>
+                            <!--<a class="nav-link" ng-click="ctrl.openDialog($event)">Add Event</a>-->
+                            <a class="nav-link" href="#/my_new_task">Add Event</a>
                         </li>
                         <!--<li class="nav-item dropdown btn-group">-->
                             <!--<a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
@@ -70,9 +71,9 @@
                             <!--</div>-->
                         <!--</li>-->
                     </ul>
-                    <form class="form-inline waves-effect waves-light">
-                        <input class="form-control" type="text" placeholder="Search">
-                    </form>
+                    <!--<form class="form-inline waves-effect waves-light">-->
+                        <!--<input class="form-control" type="text" placeholder="Search">-->
+                    <!--</form>-->
                 </div>
             </div>
         </nav>
@@ -82,21 +83,22 @@
     <main>
         <!--Main layout-->
         <div class="container">
+            <ng-view></ng-view>
             <!--First row-->
-            <div class="row wow fadeIn" data-wow-delay="0.2s">
-                <div class="col-md-12">
-                    <div class="jumbotron">
-                        <ng-view></ng-view>
-                        <!--<h2 class="h2-responsive">Material Design for Bootstrap</h2>-->
-                        <!--<br>-->
-                        <!--<p>Powerful and free Material Design UI KIT</p>-->
-                        <!--<hr>-->
-                        <!--<p>Register for free and get access to amazing framework and beautiful components</p>-->
-                        <!--<a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-mdb btn-stc" rel="nofollow">Download <i class="fa fa-download right"></i></a>-->
-                        <!--<a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-unique btn-ptc" rel="nofollow">Learn more <i class="fa fa-book right"></i></a>-->
-                    </div>
-                </div>
-            </div>
+            <!--<div class="row wow fadeIn" data-wow-delay="0.2s">-->
+                <!--<div class="col-md-12">-->
+                    <!--<div class="jumbotron">-->
+                        <!---->
+                        <!--&lt;!&ndash;<h2 class="h2-responsive">Material Design for Bootstrap</h2>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>Powerful and free Material Design UI KIT</p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<hr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>Register for free and get access to amazing framework and beautiful components</p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-mdb btn-stc" rel="nofollow">Download <i class="fa fa-download right"></i></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-unique btn-ptc" rel="nofollow">Learn more <i class="fa fa-book right"></i></a>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <!--/.First row-->
         </div>
         <!--/.Main layout-->
@@ -120,7 +122,7 @@
 
     <!-- JQuery -->
     <script type="text/javascript" src="{% static 'mdb_libraries/js/jquery-2.2.3.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/libraries/jquery.dataTables.js' %}"></script>
+    <!--<script type="text/javascript" src="{% static 'js/libraries/jquery.dataTables.js' %}"></script>-->
 
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="{% static 'mdb_libraries/js/tether.min.js' %}"></script>
@@ -133,7 +135,7 @@
 
     <!--Angular-->
         <script type="text/javascript" src="{% static 'js/libraries/angular.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/angular.min.js' %}"></script>
+
         <script type="text/javascript" src="{% static 'js/libraries/angular-route.min.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script type="text/javascript" src="{% static 'js/libraries/html5shiv.min.js' %}"></script>
@@ -149,9 +151,13 @@
         <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-calendar.js' %}"></script>
     <!--For Bootstrap Date picker JS-->
         <script type="text/javascript" src="{% static 'js/libraries/bootstrap-datepicker.min.js' %}"></script>
-    <!--For Data tables JS-->
-        <script type="text/javascript" src="{% static 'js/libraries/dataTables.bootstrap.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/dataTables.fixedHeader.min.js' %}"></script>
+    <!--For GRID Data tables JS-->
+        <script type="text/javascript" src="{% static 'js/libraries/ui-grid.js' %}"></script>
+     <!--For Angular Material JS-->
+        <script type="text/javascript" src="{% static 'js/libraries/angular.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-aria.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-messages.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/angular-material.min.js' %}"></script>
     <!-- Custom Angular JS -->
         <script type="text/javascript" src="{% static 'js/angularjs/main.js' %}"></script>
 

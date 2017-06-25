@@ -1,201 +1,164 @@
-<!--Modal Reservation-->
 <div>
-    <!--Header-->
-    <div class="modal-header">
-        <h4 class="modal-title w-100">New Event</h4>
-    </div>
-    <!--Body-->
-    <br/>
-    <div class="row">
-        <!--First column-->
-        <div class="col-md-6">
-            <div class="md-form">
-                <input type="text" id="form22" class="form-control">
-                <label for="form22">Case Number</label>
+    <form name="newEventForm" novalidate ng-submit="vm.addNewEvent()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Event</h2>
+                <span flex></span>
+                <!--<md-button class="md-icon-button" ng-click="clientfrmctrl.cancel()">-->
+                    <!--<md-icon md-font-set="material-icons" aria-label="Close dialog">close</md-icon>-->
+                <!--</md-button>-->
             </div>
+        </md-toolbar>
+        <div layout-padding layout="column" ng-cloak="">
+            <md-card>
+                <md-dialog-content>
+                    <br/>
+                    <div layout-gt-sm="row">
+                        <!-- CASE NUMBER -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Case Number</label>
+                            <input required name="case_number" ng-model="vm.newEvent.case_number" class="dialog-close">
+                            <div ng-messages="newEventForm.case_number.$error">
+                                <div ng-message="required">This is required.</div>
+                                <!--<div ng-message="md-maxlength"></div>-->
+                            </div>
+                        </md-input-container >
+
+                        <!-- COURT NAME -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Court Name</label>
+                            <input required name="court_name" ng-model="vm.newEvent.court_name" class="dialog-close">
+                            <div ng-messages="newEventForm.court_name.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <!-- APPEARING FOR -->
+                        <md-autocomplete flex required
+                            md-selected-item="vm.selectedAppFor"
+                            md-search-text="vm.searchAppForText"
+                            md-items="item in vm.appForQuerySearch(vm.searchAppForText)"
+                            md-item-text="item.display"
+                            md-min-length="0"
+                            md-floating-label="Appearing For">
+                            <md-item-template>
+                                <span md-highlight-text="vm.searchAppForText"
+                                      md-highlight-flags="^i">{{item.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matching were found.
+                            </md-not-found>
+                        </md-autocomplete>
+
+                        <!-- STAGE -->
+                        <md-autocomplete flex required
+                            md-selected-item="vm.selectedStage"
+                            md-search-text="vm.searchStageText"
+                            md-items="item in vm.StageQuerySearch(vm.searchStageText)"
+                            md-item-text="item.display"
+                            md-min-length="0"
+                            md-floating-label="Stage">
+                            <md-item-template>
+                                <span md-highlight-text="vm.searchStageText"
+                                      md-highlight-flags="^i">{{item.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No matching were found.
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <!-- FILING DATE -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Filing Date</label>
+                            <md-datepicker name="filing_date" ng-model="vm.newEvent.filing_date" class="dialog-close"></md-datepicker>
+                        </md-input-container>
+
+                        <!-- PREVIOUS DATE -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Previous Date</label>
+                            <md-datepicker name="previous_date" ng-model="vm.newEvent.previous_date" class="dialog-close"></md-datepicker>
+                        </md-input-container>
+                        <!-- CITATION -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Citation</label>
+                            <input required name="citation" ng-model="vm.newEvent.citation" class="dialog-close">
+                            <div ng-messages="newEventForm.citation.$error">
+                                <div ng-message="required">This is required.</div>
+                                <!--<div ng-message="md-maxlength"></div>-->
+                            </div>
+                        </md-input-container >
+                    </div>
+                    <div>
+                        <!-- DESCRIPTION -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Description</label>
+                            <textarea name="description" ng-model="vm.newEvent.description" md-maxlength="300" rows="1" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </div>
+                    <div>
+                        <!-- REMARKS -->
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Remarks</label>
+                            <textarea name="remarks" ng-model="vm.newEvent.remarks" md-maxlength="300" rows="1" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <label><h3>Name of the Parties</h3></label>
+                    </div>
+                    <div>
+                        <table class="table table-striped table-bordered" data-ng-if="vm.newEvent.parties.length>0">
+                            <thead>
+                                <tr>
+                                    <th><md-checkbox aria-label=select_all" ng-model="vm.selectedAll" ng-click="vm.checkAll()"></md-checkbox></th>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="party in vm.newEvent.parties track by $index">
+                                    <td>
+                                        <md-checkbox aria-label="party.name" ng-click="vm.updateSelectedAll($index, party.selected)"  ng-model="party.selected"></md-checkbox>
+                                    </td>
+                                    <td>
+                                        <input name="name" type="text" ng-model="party.name" class="dialog-close">
+                                    </td>
+                                    <td>
+                                        <input name="mobile" type="text" ng-model="party.mobile" class="dialog-close" pattern="^[789]\d{9}$">
+                                        <div ng-messages="newEventForm.mobile.$error">
+                                            <div ng-message="pattern">invalid format</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="email" ng-model="party.email" class="dialog-close" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$">
+                                        <div ng-messages="newEventForm.email.$error">
+                                            <div ng-message="pattern">invalid format</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-group">
+                            <md-button class="md-raised md-warn pull-right" data-ng-show="vm.newEvent.parties.length>0" ng-click="vm.removeParty()">Remove</md-button>
+                            <md-button class="md-raised md-primary pull-right" ng-click="vm.addParty()">Add Party</md-button>
+                        </div>
+                    </div>
+                </md-dialog-content>
+
+                <md-dialog-actions layout="row" layout-align="end">
+                    <md-button ng-disabled="newEventForm.$invalid" type="submit" class="md-primary">
+                        Save
+                    </md-button>
+                    <md-button ng-click="vm.cancel()" type="button">
+                        Cancel
+                    </md-button>
+                </md-dialog-actions>
+            </md-card>
         </div>
-        <!--First column-->
-        <div class="col-md-6">
-            <div class="md-form">
-                <input type="text" id="form35" class="form-control">
-                <label for="form35">Court Name</label>
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <!--First column-->
-        <div class="col-md-6">
-            <div class="md-form">
-                <input type="text" id="form32" class="form-control">
-                <label for="form32">Filing Date</label>
-            </div>
-        </div>
-        <!--First column-->
-        <div class="col-md-6">
-            <div class="md-form">
-                <input type="text" id="form34" class="form-control">
-                <label for="form34">Previous Date</label>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="md-form">
-        <input type="text" id="form33" class="form-control">
-        <label for="form33">Nature of Suite</label>
-    </div>
-
-
-
-
-
-    <div class="md-form">
-        <input type="text" id="form36" class="form-control">
-        <label for="form36">Name of the Party</label>
-    </div>
-
-    <div class="md-form">
-        <input type="text" id="form37" class="form-control">
-        <label for="form37">Appering For</label>
-    </div>
-
-    <div class="md-form">
-        <select class="mdb-select" multiple>
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-</select>
-<label>Example label</label>
-        <select class="mdb-select" id="form38">
-            <option value="Judgement">Judgement</option>
-            <option value="Favour">Favour</option>
-            <option value="Non Favour">Non Favour</option>
-        </select>
-        <!--<//input type="text"  >-->
-        <label for="form38">Stage</label>
-    </div>
-
-    <div class="md-form">
-        <input type="text" id="form39" class="form-control">
-        <label for="form39">Citation</label>
-    </div>
-
-    <!--Basic textarea-->
-    <div class="md-form">
-        <textarea type="text" id="form40" class="md-textarea"></textarea>
-        <label for="form40">Description</label>
-    </div>
-
-    <!--Basic textarea-->
-    <div class="md-form">
-        <textarea type="text" id="form41" class="md-textarea"></textarea>
-        <label for="form41">Remarks</label>
-    </div>
-    <!--Footer-->
-    <div>
-        <button type="button" class="btn btn-success">Save</button>
-        <button type="button" class="btn btn-info">Close</button>
-    </div>
+    </form>
 </div>
-<!--/Modal Reservation-->
 
 
-<!--<div class="container-fluid text-center">-->
-    <!--<div class="col-sm-2 text-center">-->
-    <!--</div>-->
-    <!--<div class="col-sm-8 text-center">-->
-        <!--<form id="eventForm" method="post" class="form-horizontal">-->
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Case Number</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="case_id" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Filing Date</label>-->
-                <!--<div class="col-xs-5 date">-->
-                    <!--<div class="input-group input-append date" id="filingDatePicker">-->
-                        <!--<input type="text" class="form-control" name="filingDate" />-->
-                        <!--<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Nature of Suite</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="nature_of_suite" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Previous Date</label>-->
-                <!--<div class="col-xs-5 date">-->
-                    <!--<div class="input-group input-append date" id="previousDatePicker">-->
-                        <!--<input type="text" class="form-control" name="previousDate" />-->
-                        <!--<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Court Name</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="court_name" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Name of the Party</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="parties" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Appering For</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="parties" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Stage</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="parties" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Citation</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="parties" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Description</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="parties" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label">Remarks</label>-->
-                <!--<div class="col-xs-5">-->
-                    <!--<input type="text" class="form-control" name="parties" />-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-                <!--<div class="col-xs-5 col-xs-offset-3">-->
-                    <!--<button type="submit" class="btn btn-custom btn-success">Save</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</div>-->
 
