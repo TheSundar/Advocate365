@@ -23,11 +23,12 @@
     <link href="{% static 'mdb_libraries/css/style.css' %}" rel="stylesheet" type="text/css">
 
     <!--For Bootstrap Calendar-->
+        <!--<link href="{% static 'css/bootstrap_calendar/bootstrap.css' %}" rel="stylesheet" type="text/css">-->
         <link href="{% static 'css/bootstrap_calendar/colorpicker.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'css/bootstrap_calendar/angular-bootstrap-calendar.min.css' %}" rel="stylesheet" type="text/css">
-    <!--For Bootstrap Date Picker CSS-->
-        <link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}" />
-        <link rel="stylesheet" href="{% static 'css/datepicker3.min.css' %}" />
+    <!--&lt;!&ndash;For Bootstrap Date Picker CSS&ndash;&gt;-->
+        <!--<link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}" />-->
+        <!--<link rel="stylesheet" href="{% static 'css/datepicker3.min.css' %}" />-->
     <!--Font Awesome Icons-->
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <!--For Grid Datatables-->
@@ -81,28 +82,7 @@
     </header>
 
     <main>
-        <!--Main layout-->
-        <div class="container">
-            <ng-view></ng-view>
-            <!--First row-->
-            <!--<div class="row wow fadeIn" data-wow-delay="0.2s">-->
-                <!--<div class="col-md-12">-->
-                    <!--<div class="jumbotron">-->
-                        <!---->
-                        <!--&lt;!&ndash;<h2 class="h2-responsive">Material Design for Bootstrap</h2>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<br>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<p>Powerful and free Material Design UI KIT</p>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<hr>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<p>Register for free and get access to amazing framework and beautiful components</p>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-mdb btn-stc" rel="nofollow">Download <i class="fa fa-download right"></i></a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-unique btn-ptc" rel="nofollow">Learn more <i class="fa fa-book right"></i></a>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--/.First row-->
-        </div>
-        <!--/.Main layout-->
-
+        <ng-view></ng-view>
     </main>
 
     <!--Footer-->
@@ -135,22 +115,19 @@
 
     <!--Angular-->
         <script type="text/javascript" src="{% static 'js/libraries/angular.js' %}"></script>
-
         <script type="text/javascript" src="{% static 'js/libraries/angular-route.min.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script type="text/javascript" src="{% static 'js/libraries/html5shiv.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/libraries/respond.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/libraries/bootstrap.min.js' %}"></script>
     <!--For Angular Calendar-->
-        <script type="text/javascript" src="{% static 'js/libraries/moment.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/interactjs.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/angular-animate.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/ui-bootstrap-tpls.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/rrule.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-colorpicker.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/libraries/angular-bootstrap-calendar.js' %}"></script>
-    <!--For Bootstrap Date picker JS-->
-        <script type="text/javascript" src="{% static 'js/libraries/bootstrap-datepicker.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/moment.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/interactjs.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/angular-animate.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/ui-bootstrap-tpls.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/rrule.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/angular-bootstrap-colorpicker.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/libraries/bootstrap_calendar/angular-bootstrap-calendar.js' %}"></script>
     <!--For GRID Data tables JS-->
         <script type="text/javascript" src="{% static 'js/libraries/ui-grid.js' %}"></script>
      <!--For Angular Material JS-->
